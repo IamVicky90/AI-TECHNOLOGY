@@ -8,7 +8,6 @@ import smtplib
 try:
     engine=pyttsx3.init('sapi5')
     voices=engine.getProperty('voices')
-    print(voices[0].id)
     engine.setProperty('voice',voices[0].id)
 
     def speak(audio):
@@ -22,28 +21,27 @@ try:
             speak('Good Afternoon Vicky')
         else:
             speak('Good Evening')
-        print('Hellow I am Computer, How can I help you!')
         speak('Hellow I am Computer, How can I help you!')
     def takecommand():
         r=sr.Recognizer()
         with sr.Microphone() as source:
-            print('Listening....')
+
             r.pause_threshold=1
             
             audio=r.listen(source,timeout=1,phrase_time_limit=4)
         try:
-            print('Recognizing....')
+            
             querry=r.recognize_google(audio,language='en-in')
-            print(f'You said {querry}')
+            
         except Exception:
-            print('Say That Again Please!')
+            
             return 'None'
         return querry
 
 
     if __name__ == "__main__":
         while True:
-            speak("hellow tell")
+            speak("Tell gh")
             querry=takecommand().lower()
             # Strt
             if "poweroff computer" in querry:
@@ -81,13 +79,13 @@ try:
                     
                     results=wikipedia.summary(querry,sentences=2)
                     speak('According to wikipedia, ')
-                    print(results)
+                
                     speak(results)
                 elif 'who are you' in querry:
-                    print('I am Computer Sir!')
+                    
                     speak('I am Computer Sir!')
                 elif 'made you' in querry:
-                    print('I am made by you Sir Waqas powered by Vicky World Production')
+            
                     speak('I am made by you Sir Waqas powered by Vicky World Production')
 
 
@@ -106,7 +104,7 @@ try:
                     webbrowser.open('stackoverflow.com')
                 elif 'time' in querry:
                     str=datetime.datetime.now().strftime('%H:%M:%S')
-                    print(f"Time is{str}")
+                    
                     speak(f"Time is {str}")
                 
 
@@ -117,15 +115,15 @@ try:
                 elif 'song' in querry:
                     music_dir=r'D:\New folder (2)'
                     songs=os.listdir(music_dir)
-                    print(songs[36])
+                
                     os.startfile(os.path.join(music_dir,songs[36]))
 
                 elif 'stop' in querry:
-                    print('Computer has been stopped Thank You Sir!')
+                    
                     speak('Computer has been stopped Thank You Sir!')
 
                 elif 'quit' in querry:
-                    print('Computer has been stopped. Thank You Sir!')
+                    
                     speak('Computer has been stopped. Thank You Sir!')
                 speak('Again tell what you want to me')
 except Exception as e:
